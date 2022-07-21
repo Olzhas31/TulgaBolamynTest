@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>users list</title>
+</head>
+<body>
+    <div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>login</th>
+                <th>role</th>
+                <th>enabled</th>
+                <th>locked</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.id}"></td>
+                <td><a th:href="@{'/users/' + ${user.id}}" th:text="${user.login}"></a></td>
+                <td th:text="${user.userRole}"></td>
+                <td th:text="${user.enabled}"></td>
+                <td th:text="${user.locked}"></td>
+<!--                <td><a th:href="@{/delete(id=${country.id})}" class="btn btn-danger delBtn">Delete</a></td>-->
+<!--                <td><a th:href="@{/findOne(id=${country.id})}" class="btn btn-primary eBtn">Edit</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
