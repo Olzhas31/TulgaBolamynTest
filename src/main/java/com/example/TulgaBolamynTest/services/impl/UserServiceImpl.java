@@ -7,6 +7,7 @@ import com.example.TulgaBolamynTest.repositories.UserRepository;
 import com.example.TulgaBolamynTest.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,7 +34,6 @@ public class UserServiceImpl implements UserService {
         return uDetailsRepository.findById(id).get();
     }
 
-    // TODO: udetails қа id келсе автоматты түрде обновить етуге болатын шығар, бірақ басқа данныйлар өшіп кетпесе
     @Override
     public UDetails update(UDetails request) {
         UDetails uDetails = uDetailsRepository.findById(request.getId()).get();
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
         userRepository.enableUser(id);
     }
 
-    // бірден базаға запрос жасау керек
+    // TODO: бірден базаға запрос жасау керек
     @Override
     public void blockById(Long id) {
         User user = userRepository.findById(id).get();
@@ -64,10 +64,12 @@ public class UserServiceImpl implements UserService {
         userRepository.saveAndFlush(user);
     }
 
+    // TODO: бірден базаға запрос жасау керек
     @Override
     public void unblockById(Long id) {
         User user = userRepository.findById(id).get();
         user.setLocked(false);
+        userRepository.saveAndFlush(user);
     }
 
     // TODO:

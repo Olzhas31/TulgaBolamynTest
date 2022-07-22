@@ -5,6 +5,13 @@
     <title>Edit Account</title>
 </head>
 <body>
-
+    <form method="post" th:action="@{/users/edit}" th:object="${user}">
+        <input type="hidden" th:field="*{id}">
+        <input type="text" th:field="*{name}"> <br>
+        <input type="text" th:field="*{surname}"> <br>
+        <input type="text" th:field="*{email}"> <br>
+        <input type="text" th:field="*{phoneNumber}"> <br>
+        <input type="submit" value="edit">
+    </form>
 </body>
 </html>

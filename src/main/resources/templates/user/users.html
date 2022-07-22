@@ -14,17 +14,21 @@
                 <th>role</th>
                 <th>enabled</th>
                 <th>locked</th>
+                <th>enable</th>
+                <th>block</th>
+                <th>unblock</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="user: ${users}">
                 <td th:text="${user.id}"></td>
-                <td><a th:href="@{'/users/' + ${user.id}}" th:text="${user.login}"></a></td>
+                <td><a th:href="@{'/users/account?id=' + ${user.id}}" th:text="${user.login}"></a></td>
                 <td th:text="${user.userRole}"></td>
                 <td th:text="${user.enabled}"></td>
                 <td th:text="${user.locked}"></td>
-<!--                <td><a th:href="@{/delete(id=${country.id})}" class="btn btn-danger delBtn">Delete</a></td>-->
-<!--                <td><a th:href="@{/findOne(id=${country.id})}" class="btn btn-primary eBtn">Edit</a></td>-->
+                <td><a th:href="@{'/users/enable?id=' + ${user.id}}">Enable</a></td>
+                <td><a th:href="@{'/users/block?id=' + ${user.id}}">Block</a></td>
+                <td><a th:href="@{'/users/unblock?id=' + ${user.id}}">Unblock</a></td>
             </tr>
             </tbody>
         </table>

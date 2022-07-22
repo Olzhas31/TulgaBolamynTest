@@ -5,6 +5,16 @@
     <title>Account</title>
 </head>
 <body>
-    <div></div>
+    <div>
+        <span th:text="${login}"></span> <br>
+        <span th:text="${user.name}"></span> <br>
+        <span th:text="${user.surname}"></span> <br>
+        <span th:text="${user.phoneNumber}"></span> <br>
+        <span th:text="${user.email}"></span> <br>
+        <span th:text="${user.registratedDate}"></span> <br>
+    </div>
+    <div>
+        <a th:href="@{/users/edit}">edit</a>
+    </div>
 </body>
 </html>

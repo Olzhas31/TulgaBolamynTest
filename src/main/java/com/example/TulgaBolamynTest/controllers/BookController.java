@@ -14,17 +14,20 @@ public class BookController {
 
     private final BookService bookService;
 
+    // complete
     @GetMapping
     public String showBooksListPage(Model model){
         model.addAttribute("books", bookService.getAll());
         return "book/books";
     }
 
+    // complete
     @GetMapping("/create")
     public String showCreateNewBookPage(@ModelAttribute("book") Book book){
         return "book/newBook";
     }
 
+    // complete
     @PostMapping("/create")
     public String create(@ModelAttribute("book") Book book){
         bookService.create(book);

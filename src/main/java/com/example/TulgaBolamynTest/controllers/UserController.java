@@ -2,6 +2,8 @@ package com.example.TulgaBolamynTest.controllers;
 
 import com.example.TulgaBolamynTest.domains.UDetails;
 import com.example.TulgaBolamynTest.domains.User;
+import com.example.TulgaBolamynTest.domains.UserRole;
+import com.example.TulgaBolamynTest.exception_handling.MyException;
 import com.example.TulgaBolamynTest.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -23,13 +25,23 @@ public class UserController {
         return "user/users";
     }
 
-    // complete
-    @GetMapping("/{id}")
-    public String showAccountPage(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.getUDetailsById(id));
+    // TODO: exception ды өзгерту
+    @GetMapping("/account")
+    public String showAccountPage(@RequestParam(value = "id", required = false) Long id, Model model, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+        if (id == null || id == user.getId()) {
+            model.addAttribute("login", user.getLogin());
+            model.addAttribute("user", user.getUDetails());
+        } else if (user.getUserRole() == UserRole.ADMIN) {
+            model.addAttribute("login", userService.getUserById(id).getLogin());
+            model.addAttribute("user", userService.getUDetailsById(id));
+        } else {
+            throw new MyException("Доступ жоқ");
+        }
         return "user/account";
     }
 
+    // complete
     @GetMapping("/edit")
     public String showEditPage(Authentication authentication, Model model){
         User user = (User) authentication.getPrincipal();
@@ -37,26 +49,30 @@ public class UserController {
         return "user/edit";
     }
 
+    // complete
     @PostMapping("/edit")
     public String update(@ModelAttribute("user") UDetails uDetails){
-        UDetails updatedUDetails = userService.update(uDetails);
-        return "redirect:/users/" + updatedUDetails.getUser().getId();
+        userService.update(uDetails);
+        return "redirect:/logout";
     }
 
-    @GetMapping("/{id}/enable")
-    public String enable(@PathVariable Long id){
+    // complete
+    @GetMapping("/enable")
+    public String enable(@RequestParam("id") Long id){
         userService.enableById(id);
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}/block")
-    public String block(@PathVariable Long id){
+    // complete
+    @GetMapping("/block")
+    public String block(@RequestParam("id") Long id){
         userService.blockById(id);
         return "redirect:/users";
     }
 
-    @PostMapping("/{id}/unblock")
-    public String unblock(@PathVariable Long id){
+    // complete
+    @GetMapping("/unblock")
+    public String unblock(@RequestParam("id") Long id){
         userService.unblockById(id);
         return "redirect:/users";
     }

@@ -5,6 +5,29 @@
     <title>All books list</title>
 </head>
 <body>
-
+<div>
+    <a th:href="@{/books/create}">Create</a>
+</div>
+<div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>hidden</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book: ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.hidden}"></td>
+<!--            <td><a th:href="@{'/users/unblock?id=' + ${book.id}}">Unblock</a></td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -5,6 +5,12 @@
     <title>Create book page</title>
 </head>
 <body>
-
+    <div>
+        <form method="post" th:action="@{/books/create}" th:object="${book}">
+            <input type="text" th:field="*{name}"> <br>
+            <input type="text" th:field="*{author}"> <br>
+            <input type="submit" value="create">
+        </form>
+    </div>
 </body>
 </html>
