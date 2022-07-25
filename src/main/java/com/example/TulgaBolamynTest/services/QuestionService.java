@@ -10,7 +10,7 @@ public interface QuestionService {
 
     Question getById(Long id);
 
-    void create(Question question, Long bookId);
+    void create(Question question);
 
     Question update(Question question);
 

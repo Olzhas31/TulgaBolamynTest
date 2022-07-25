@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit question</title>
+</head>
+<body>
+<div>
+    <form method="post" th:action="@{/questions/edit}" th:object="${question}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{book}">
+        <input type="text" th:field="*{quest}">
+        <input type="text" th:field="*{option0}">
+        <input type="text" th:field="*{option1}">
+        <input type="text" th:field="*{option2}">
+        <input type="text" th:field="*{option3}">
+        <input type="submit" value="Edit">
+    </form>
+</div>
+</body>
+</html>

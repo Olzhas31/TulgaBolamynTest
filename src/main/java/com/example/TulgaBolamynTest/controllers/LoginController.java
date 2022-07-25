@@ -20,11 +20,13 @@ public class LoginController {
         return "login";
     }
 
+    // TODO:
     @GetMapping("/reset-password")
     public String showForgetPasswordPage(@ModelAttribute("email") UDetails uDetails){
         return "resetPassword";
     }
 
+    // TODO:
     @PostMapping("/reset-password")
     public String resetPassword(@ModelAttribute("email") UDetails uDetails){
         userService.resetPassword(uDetails.getEmail());

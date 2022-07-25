@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create book page</title>
+</head>
+<body>
+    <div>
+        <form method="post" th:action="@{/books/update}" th:object="${book}">
+            <input type="hidden" th:field="*{id}"> <br>
+            <input type="text" th:field="*{name}"> <br>
+            <input type="text" th:field="*{author}"> <br>
+            <input type="hidden" th:field="*{hidden}"> <br>
+            <input type="submit" value="edit">
+        </form>
+    </div>
+</body>
+</html>

@@ -5,6 +5,17 @@
     <title>Create question</title>
 </head>
 <body>
-
+    <div>
+        <form method="post" th:action="@{/questions/create}" th:object="${question}">
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{book}">
+            <input type="text" th:field="*{quest}">
+            <input type="text" th:field="*{option0}">
+            <input type="text" th:field="*{option1}">
+            <input type="text" th:field="*{option2}">
+            <input type="text" th:field="*{option3}">
+            <input type="submit" value="Create">
+        </form>
+    </div>
 </body>
 </html>

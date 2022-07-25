@@ -77,12 +77,14 @@ public class UserController {
         return "redirect:/users";
     }
 
+    // TODO:
     @GetMapping("/{id}/change-role")
     public String showChangeRolePage(@PathVariable Long id, Model model){
         model.addAttribute("user", userService.getUserById(id));
         return "user/changeRole";
     }
 
+    // TODO:
     @PostMapping("/change-role")
     public String changeRole(@ModelAttribute("user") User user) {
         userService.changeRole(user);

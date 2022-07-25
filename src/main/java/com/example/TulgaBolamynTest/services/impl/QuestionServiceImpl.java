@@ -29,9 +29,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void create(Question question, Long bookId) {
-        Book book = bookRepository.findById(bookId).get();
-        question.setBook(book);
+    public void create(Question question) {
         questionRepository.saveAndFlush(question);
     }
 

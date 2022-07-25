@@ -5,6 +5,36 @@
     <title>Questions</title>
 </head>
 <body>
-
+    <div>
+        <a th:href="@{'/questions/create?bookId=' + ${bookId}}">Create question</a>
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Question</th>
+                <th>Option0</th>
+                <th>Option1</th>
+                <th>Option2</th>
+                <th>Option3</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="question: ${questions}">
+                <td th:text="${question.id}"></td>
+                <td th:text="${question.quest}"></td>
+                <td th:text="${question.option0}"></td>
+                <td th:text="${question.option1}"></td>
+                <td th:text="${question.option2}"></td>
+                <td th:text="${question.option3}"></td>
+                <td><a th:href="@{'/questions/edit?id=' + ${question.id}}">Edit</a></td>
+                <td><a th:href="@{'/questions/delete?id=' + ${question.id}}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

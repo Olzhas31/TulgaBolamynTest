@@ -34,27 +34,30 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @GetMapping("/{id}/edit")
-    public String showEditBookPage(@PathVariable Long id, Model model){
-        Book book = bookService.getById(id);
-        model.addAttribute("book", book);
-        return "book/newBook";
+    // complete
+    @GetMapping("/edit")
+    public String showEditBookPage(@RequestParam("id") Long id, Model model){
+        model.addAttribute("book", bookService.getById(id));
+        return "book/editBook";
     }
 
+    // complete
     @PostMapping("/update")
     public String update(@ModelAttribute("book") Book book){
         bookService.update(book);
         return "redirect:/books";
     }
 
-    @PostMapping("/{id}/show")
-    public String show(@PathVariable Long id){
+    // complete
+    @GetMapping("/show")
+    public String show(@RequestParam("id") Long id){
         bookService.showBookById(id);
         return "redirect:/books";
     }
 
-    @PostMapping("/{id}/hide")
-    public String hide(@PathVariable Long id){
+    // complete
+    @GetMapping("/hide")
+    public String hide(@RequestParam("id") Long id){
         bookService.hideBookById(id);
         return "redirect:/books";
     }

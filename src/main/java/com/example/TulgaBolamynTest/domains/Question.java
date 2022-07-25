@@ -13,17 +13,20 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String question;
+    private String quest;
 
     private String option0;
     private String option1;
     private String option2;
     private String option3;
-    private String option4;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
     public Question(){}
+
+    public Question(Book book) {
+        this.book = book;
+    }
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<form method="post" th:action="@{/test}" th:object="${testForm}">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Сұрақ</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>Сұрақ</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr th:each="test, itemStat : *{testList}">
+            <input type="hidden" th:field="*{testList[__${itemStat.index}__].id}">
+            <td th:text="*{testList[__${itemStat.index}__].id}"></td>
+            <td th:text="*{testList[__${itemStat.index}__].quest}"></td>
+            <td>
+<!--                th:value="*{testList[__${itemStat.index}__].option0}"-->
+                <input type="radio" id="option1" name="option1" class="custom-control-input"
+                       value="${test.option0}"
+                       th:field="*{testList[__${itemStat.index}__].selectedOption}">
+                <label class="custom-control-label" for="option1">Option11</label>
+                <input type="radio" id="option2" name="option2" class="custom-control-input"
+                       value="${test.option1}"
+                       th:field="*{testList[__${itemStat.index}__].selectedOption}">
+                <label class="custom-control-label" for="option2">Option12</label>
+                <input type="radio" id="option3" name="option3" class="custom-control-input"
+                       value="${test.option2}"
+                       th:field="*{testList[__${itemStat.index}__].selectedOption}">
+                <label class="custom-control-label" for="option3">Option13</label>
+                <input type="radio" id="option4" name="option4" class="custom-control-input"
+                       value="${test.option3}"
+                       th:field="*{testList[__${itemStat.index}__].selectedOption}">
+                <label class="custom-control-label" for="option4">Option14</label>
+            </td>
+<!--            <td>-->
+<!--                <select class="form-control" id="task" name="task" th:field="*{testList[__${itemStat.index}__].selectedOption}">-->
+<!--                    <option value="">Бағалау</option>-->
+<!--                    <option th:value="'5'" th:text="'5'">-->
+<!--                    <option th:value="'4'" th:text="'4'">-->
+<!--                    <option th:value="'3'" th:text="'3'">-->
+<!--                    <option th:value="'2'" th:text="'2'">-->
+<!--                    <option th:value="'ЖОҚ'" th:text="'ЖОҚ'">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Отправить" />
+</form>
+</body>
+</html>

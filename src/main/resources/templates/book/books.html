@@ -16,15 +16,20 @@
             <th>Name</th>
             <th>Author</th>
             <th>hidden</th>
+            <th>edit</th>
+            <th>show</th>
+            <th>hide</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="book: ${books}">
             <td th:text="${book.id}"></td>
-            <td th:text="${book.name}"></td>
+            <td><a th:href="@{'/questions?id=' + ${book.id}}" th:text="${book.name}"></a></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.hidden}"></td>
-<!--            <td><a th:href="@{'/users/unblock?id=' + ${book.id}}">Unblock</a></td>-->
+            <td><a th:href="@{'/books/edit?id=' + ${book.id}}">Edit</a></td>
+            <td><a th:href="@{'/books/show?id=' + ${book.id}}">Show</a></td>
+            <td><a th:href="@{'/books/hide?id=' + ${book.id}}">Hide</a></td>
         </tr>
         </tbody>
     </table>
