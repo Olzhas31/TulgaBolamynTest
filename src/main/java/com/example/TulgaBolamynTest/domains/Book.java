@@ -21,6 +21,9 @@ public class Book {
     private Boolean hidden = true;
 
     @OneToMany(mappedBy = "book")
+    private Set<Result> results;
+
+    @OneToMany(mappedBy = "book")
     private Set<Question> questions;
 
     public Book(){}

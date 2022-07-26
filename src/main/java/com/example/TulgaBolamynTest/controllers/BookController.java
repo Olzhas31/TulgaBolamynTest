@@ -14,48 +14,41 @@ public class BookController {
 
     private final BookService bookService;
 
-    // complete
     @GetMapping
     public String showBooksListPage(Model model){
         model.addAttribute("books", bookService.getAll());
         return "book/books";
     }
 
-    // complete
     @GetMapping("/create")
     public String showCreateNewBookPage(@ModelAttribute("book") Book book){
         return "book/newBook";
     }
 
-    // complete
     @PostMapping("/create")
     public String create(@ModelAttribute("book") Book book){
         bookService.create(book);
         return "redirect:/books";
     }
 
-    // complete
     @GetMapping("/edit")
     public String showEditBookPage(@RequestParam("id") Long id, Model model){
         model.addAttribute("book", bookService.getById(id));
         return "book/editBook";
     }
 
-    // complete
     @PostMapping("/update")
     public String update(@ModelAttribute("book") Book book){
         bookService.update(book);
         return "redirect:/books";
     }
 
-    // complete
     @GetMapping("/show")
     public String show(@RequestParam("id") Long id){
         bookService.showBookById(id);
         return "redirect:/books";
     }
 
-    // complete
     @GetMapping("/hide")
     public String hide(@RequestParam("id") Long id){
         bookService.hideBookById(id);

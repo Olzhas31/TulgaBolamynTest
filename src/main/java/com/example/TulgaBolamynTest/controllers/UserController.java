@@ -18,7 +18,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // complete
     @GetMapping
     public String showUserListPage(Model model){
         model.addAttribute("users", userService.getAll());
@@ -41,7 +40,6 @@ public class UserController {
         return "user/account";
     }
 
-    // complete
     @GetMapping("/edit")
     public String showEditPage(Authentication authentication, Model model){
         User user = (User) authentication.getPrincipal();
@@ -49,35 +47,31 @@ public class UserController {
         return "user/edit";
     }
 
-    // complete
     @PostMapping("/edit")
     public String update(@ModelAttribute("user") UDetails uDetails){
         userService.update(uDetails);
         return "redirect:/logout";
     }
 
-    // complete
     @GetMapping("/enable")
     public String enable(@RequestParam("id") Long id){
         userService.enableById(id);
         return "redirect:/users";
     }
 
-    // complete
     @GetMapping("/block")
     public String block(@RequestParam("id") Long id){
         userService.blockById(id);
         return "redirect:/users";
     }
 
-    // complete
     @GetMapping("/unblock")
     public String unblock(@RequestParam("id") Long id){
         userService.unblockById(id);
         return "redirect:/users";
     }
 
-    // TODO:
+    //  TODO:
     @GetMapping("/{id}/change-role")
     public String showChangeRolePage(@PathVariable Long id, Model model){
         model.addAttribute("user", userService.getUserById(id));

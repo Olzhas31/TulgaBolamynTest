@@ -16,6 +16,7 @@ public class TestDTO {
     private String option3;
 
     private String selectedOption;
+    private boolean isCorrect;
 
     public TestDTO(){}
 

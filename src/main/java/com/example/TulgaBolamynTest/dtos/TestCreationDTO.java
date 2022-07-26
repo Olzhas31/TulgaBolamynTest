@@ -10,6 +10,9 @@ public class TestCreationDTO {
 
     private List<TestDTO> testList = new ArrayList<>();
 
+    private Long bookId;
+    private int point;
+
     public void addTest(TestDTO testDTO){
         this.testList.add(testDTO);
     }

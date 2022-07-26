@@ -56,20 +56,14 @@ public class UserServiceImpl implements UserService {
         userRepository.enableUser(id);
     }
 
-    // TODO: бірден базаға запрос жасау керек
     @Override
     public void blockById(Long id) {
-        User user = userRepository.findById(id).get();
-        user.setLocked(true);
-        userRepository.saveAndFlush(user);
+        userRepository.setLocked(id, true);
     }
 
-    // TODO: бірден базаға запрос жасау керек
     @Override
     public void unblockById(Long id) {
-        User user = userRepository.findById(id).get();
-        user.setLocked(false);
-        userRepository.saveAndFlush(user);
+        userRepository.setLocked(id, false);
     }
 
     // TODO:

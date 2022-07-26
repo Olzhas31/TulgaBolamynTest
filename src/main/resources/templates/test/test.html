@@ -6,6 +6,7 @@
 </head>
 <body>
 <form method="post" th:action="@{/test}" th:object="${testForm}">
+    <input type="hidden" th:field="*{bookId}">
     <table>
         <thead>
         <tr>
@@ -22,26 +23,34 @@
         <tbody>
         <tr th:each="test, itemStat : *{testList}">
             <input type="hidden" th:field="*{testList[__${itemStat.index}__].id}">
+            <input type="hidden" th:field="*{testList[__${itemStat.index}__].option0}">
+            <input type="hidden" th:field="*{testList[__${itemStat.index}__].option1}">
+            <input type="hidden" th:field="*{testList[__${itemStat.index}__].option2}">
+            <input type="hidden" th:field="*{testList[__${itemStat.index}__].option3}">
             <td th:text="*{testList[__${itemStat.index}__].id}"></td>
             <td th:text="*{testList[__${itemStat.index}__].quest}"></td>
             <td>
 <!--                th:value="*{testList[__${itemStat.index}__].option0}"-->
+                <input type="radio" id="option0" name="option0" class="custom-control-input"
+                       value="0"
+                       th:field="*{testList[__${itemStat.index}__].selectedOption}">
+                <label class="custom-control-label" for="option0"
+                       th:text="*{testList[__${itemStat.index}__].option0}"></label>
                 <input type="radio" id="option1" name="option1" class="custom-control-input"
-                       value="${test.option0}"
+                       value="1"
                        th:field="*{testList[__${itemStat.index}__].selectedOption}">
-                <label class="custom-control-label" for="option1">Option11</label>
+                <label class="custom-control-label" for="option1"
+                       th:text="*{testList[__${itemStat.index}__].option1}"></label>
                 <input type="radio" id="option2" name="option2" class="custom-control-input"
-                       value="${test.option1}"
+                       value="2"
                        th:field="*{testList[__${itemStat.index}__].selectedOption}">
-                <label class="custom-control-label" for="option2">Option12</label>
+                <label class="custom-control-label" for="option2"
+                       th:text="*{testList[__${itemStat.index}__].option2}"></label>
                 <input type="radio" id="option3" name="option3" class="custom-control-input"
-                       value="${test.option2}"
+                       value="3"
                        th:field="*{testList[__${itemStat.index}__].selectedOption}">
-                <label class="custom-control-label" for="option3">Option13</label>
-                <input type="radio" id="option4" name="option4" class="custom-control-input"
-                       value="${test.option3}"
-                       th:field="*{testList[__${itemStat.index}__].selectedOption}">
-                <label class="custom-control-label" for="option4">Option14</label>
+                <label class="custom-control-label" for="option3"
+                       th:text="*{testList[__${itemStat.index}__].option3}"></label>
             </td>
 <!--            <td>-->
 <!--                <select class="form-control" id="task" name="task" th:field="*{testList[__${itemStat.index}__].selectedOption}">-->

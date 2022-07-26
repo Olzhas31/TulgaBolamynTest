@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -27,7 +26,6 @@ public class RegistrationController {
         return "registration";
     }
 
-    // complete
     @PostMapping("/registration")
     public String registration(@ModelAttribute("user") // @Valid
                                 RegistrationRequest user){

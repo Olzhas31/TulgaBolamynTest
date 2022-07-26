@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Result Page</title>
+</head>
+<body>
+    <div>
+        <span th:text="${testForm.point}"></span>
+    </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Сұрақ</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Сұрақ</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <form method="post" th:action="@{/test}" th:object="${results}">
+                <tr th:each="test, itemStat : *{testList}">
+                    <td th:text="*{testList[__${itemStat.index}__].id}"></td>
+                    <td th:text="*{testList[__${itemStat.index}__].quest}"></td>
+                    <td th:text="*{testList[__${itemStat.index}__].selectedOption}"></td>
+                    <td th:text="*{testList[__${itemStat.index}__].isCorrect}"></td>
+                </tr>
+            </form>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
