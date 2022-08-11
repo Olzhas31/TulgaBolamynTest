@@ -19,16 +19,16 @@ public class LoginController {
         return "login";
     }
 
-    // TODO:
-    @GetMapping("/reset-password")
-    public String showForgetPasswordPage(@ModelAttribute("email") UDetails uDetails){
-        return "resetPassword";
+    @GetMapping("/password-recovery")
+    public String showForgetPasswordPage(@ModelAttribute("user") UDetails uDetails){
+        return "password-recovery";
     }
 
     // TODO:
-    @PostMapping("/reset-password")
-    public String resetPassword(@ModelAttribute("email") UDetails uDetails){
-        userService.resetPassword(uDetails.getEmail());
+    @PostMapping("/password-recovery")
+    public String resetPassword(@ModelAttribute("user") UDetails uDetails){
+        System.out.println(uDetails.getEmail());
+//        userService.resetPassword(uDetails.getEmail());
         return "redirect:/login";
     }
 }
