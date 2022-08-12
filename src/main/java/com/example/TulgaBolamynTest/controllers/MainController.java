@@ -25,7 +25,11 @@ public class MainController {
     private final ResultService resultService;
 
     @GetMapping("/")
-    public String index(){
+    public String index(Model model, Authentication authentication){
+        if (authentication != null){
+            User user = (User) authentication.getPrincipal();
+            model.addAttribute("username", user.getUDetails().getSurname() + " " + user.getUDetails().getName());
+        }
         return "index";
     }
 
