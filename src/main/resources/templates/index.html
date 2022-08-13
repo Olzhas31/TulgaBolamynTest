@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html class="no-js" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -79,7 +79,7 @@
 								   <span class="mini-click-non" th:text="#{main}"></span>
                             </a>
                         </li>
-                        <li>
+                        <li sec:authorize="hasAuthority('ADMIN')">
                             <a th:href="@{/users}" aria-expanded="false">
                                 <i class="fas fa-users big-icon icon-wrap"></i>
                                 <span class="mini-click-non" th:text="#{menu.users}"></span>
@@ -139,14 +139,29 @@
                                                 </li>
                                                 <li class="nav-item" sec:authorize="isAuthenticated()">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-															<i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
-															<span class="admin-name" th:text="${username}"></span>
-															<i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
-														</a>
+                                                        <i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
+                                                        <span class="admin-name" th:text="${username}"></span>
+                                                        <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
+                                                    </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a th:href="@{/users/account}"><span class="fa fa-user author-log-ic"></span>My Profile</a></li>
-                                                        <li><a th:href="@{/users/edit}"><span class="fa fa-cog author-log-ic"></span>Settings</a></li>
-                                                        <li><a href="/logout"><span class="fa fa-lock author-log-ic"></span>Log Out</a></li>
+                                                        <li>
+                                                            <a th:href="@{/users/account}">
+                                                                <span class="fa fa-user author-log-ic"></span>
+                                                                <span th:text="#{menu.profile}"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a th:href="@{/users/edit}">
+                                                                <span class="fa fa-cog author-log-ic"></span>
+                                                                <span th:text="#{menu.settings}"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/logout">
+                                                                <span class="fa fa-lock author-log-ic"></span>
+                                                                <span th:text="#{menu.logout}"></span>
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -166,22 +181,10 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                                            <ul class="collapse dropdown-header-top">
-                                                <li><a href="index.html">Dashboard v.1</a></li>
-                                                <li><a href="index-1.html">Dashboard v.2</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                                            <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="mailbox.html">Inbox</a>
-                                                </li>
-                                                <li><a href="mailbox-view.html">View Mail</a>
-                                                </li>
-                                                <li><a href="mailbox-compose.html">Compose Mail</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        <li><a th:href="@{/}" th:text="#{main}"></a></li>
+                                        <li sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/users}" th:text="#{menu.users}"></a></li>
+                                        <li><a th:href="@{/books}" th:text="#{menu.books}"></a></li>
+                                        <li><a th:href="@{/tests}" th:text="#{menu.tests}"></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -197,19 +200,8 @@
                             <div class="breadcome-list">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="breadcome-heading">
-                                            <form role="search" class="">
-                                                <input type="text" placeholder="Search..." class="form-control">
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <ul class="breadcome-menu">
-                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                            </li>
-                                            <li><span class="bread-blod">Dashboard V.1</span>
-                                            </li>
+                                            <li><a th:href="@{/}" th:text="#{main}"></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -233,7 +225,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer-copy-right">
-                            <p>Copyright &copy; 2018 All rights reserved.</p>
+                            <p th:text="#{copyright}"></p>
                         </div>
                     </div>
                 </div>
