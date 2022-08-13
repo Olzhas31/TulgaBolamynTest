@@ -196,6 +196,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <ul class="breadcome-menu">
                                             <li><a th:href="@{/}" th:text="#{main}"></a></li>
+                                            <li><a th:href="@{/users}" th:text="#{menu.users}"></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -210,14 +211,14 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>login</th>
-                    <th>role</th>
-                    <th>enabled</th>
-                    <th>locked</th>
-                    <th>enable</th>
-                    <th>block</th>
-                    <th>unblock</th>
+                    <th th:text="#{user.id}"></th>
+                    <th th:text="#{user.login}"></th>
+                    <th th:text="#{user.role}"></th>
+                    <th th:text="#{user.enabled}"></th>
+                    <th th:text="#{user.locked}"></th>
+                    <th th:text="#{user.enable}"></th>
+                    <th th:text="#{user.block}"></th>
+                    <th th:text="#{user.unblock}"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -227,9 +228,9 @@
                     <td th:text="${user.userRole}"></td>
                     <td th:text="${user.enabled}"></td>
                     <td th:text="${user.locked}"></td>
-                    <td><a th:href="@{'/users/enable?id=' + ${user.id}}">Enable</a></td>
-                    <td><a th:href="@{'/users/block?id=' + ${user.id}}">Block</a></td>
-                    <td><a th:href="@{'/users/unblock?id=' + ${user.id}}">Unblock</a></td>
+                    <td><a th:href="@{'/users/enable?id=' + ${user.id}}" th:text="#{user.enable}"></a></td>
+                    <td><a th:href="@{'/users/block?id=' + ${user.id}}" th:text="#{user.block}"></a></td>
+                    <td><a th:href="@{'/users/unblock?id=' + ${user.id}}" th:text="#{user.unblock}"></a></td>
                 </tr>
                 </tbody>
             </table>

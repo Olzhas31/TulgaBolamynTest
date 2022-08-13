@@ -37,6 +37,7 @@ public class UserController {
         } else {
             throw new MyException("Доступ жоқ");
         }
+        model.addAttribute("username", user.getUDetails().getSurname() + " " + user.getUDetails().getName());
         return "user/account";
     }
 
@@ -44,6 +45,7 @@ public class UserController {
     public String showEditPage(Authentication authentication, Model model){
         User user = (User) authentication.getPrincipal();
         model.addAttribute("user", user.getUDetails());
+        model.addAttribute("username", user.getUDetails().getSurname() + " " + user.getUDetails().getName());
         return "user/edit";
     }
 
