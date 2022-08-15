@@ -197,12 +197,15 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="breadcome-list">
+                            <div class="breadcome-list single-page-breadcome">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <ul class="breadcome-menu">
-                                            <li><a th:href="@{/}" th:text="#{main}"></a></li>
-                                            <li><a th:href="@{/users/account}" th:text="#{menu.books}"></a></li>
+                                            <li>
+                                                <a th:href="@{/}" th:text="#{main}"></a>
+                                                <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><a th:href="@{/books}" th:text="#{menu.books}"></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -213,34 +216,54 @@
             </div>
         </div>
 
-        <div sec:authorize="hasAuthority('ADMIN')">
-            <a th:href="@{/books/create}">Create book</a>
-        </div>
-        <div>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th th:text="#{book.id}">ID</th>
-                    <th th:text="#{book.name}">Name</th>
-                    <th th:text="#{book.author}">Author</th>
-                    <th th:text="#{book.hidden}">hidden</th>
-                    <th th:text="#{book.edit}">edit</th>
-                    <th th:text="#{book.show}">show</th>
-                    <th th:text="#{book.hide}">hide</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="book: ${books}">
-                    <td th:text="${book.id}"></td>
-                    <td><a th:href="@{'/questions?id=' + ${book.id}}" th:text="${book.name}"></a></td>
-                    <td th:text="${book.author}"></td>
-                    <td th:text="${book.hidden}"></td>
-                    <td><a th:href="@{'/books/edit?id=' + ${book.id}}">Edit</a></td>
-                    <td><a th:href="@{'/books/show?id=' + ${book.id}}">Show</a></td>
-                    <td><a th:href="@{'/books/hide?id=' + ${book.id}}">Hide</a></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="product-status mg-tb-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-status-wrap">
+                            <h4 th:text="#{user.list}"></h4>
+                            <div sec:authorize="hasAuthority('ADMIN')" class="add-product">
+                                <a th:href="@{/books/create}" th:text="#{book.create}"></a>
+                            </div>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th th:text="#{book.id}"></th>
+                                    <th th:text="#{book.name}"></th>
+                                    <th th:text="#{book.author}"></th>
+                                    <th th:text="#{book.hidden}" sec:authorize="hasAuthority('ADMIN')"></th>
+                                    <th th:text="#{book.edit}" sec:authorize="hasAuthority('ADMIN')"></th>
+                                    <th th:text="#{book.show}" sec:authorize="hasAuthority('ADMIN')"></th>
+                                    <th th:text="#{book.hide}" sec:authorize="hasAuthority('ADMIN')"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="book: ${books}">
+                                    <td th:text="${book.id}"></td>
+                                    <td><a th:href="@{'/questions?id=' + ${book.id}}" th:text="${book.name}"></a></td>
+                                    <td th:text="${book.author}"></td>
+                                    <td th:text="${book.hidden}" sec:authorize="hasAuthority('ADMIN')"></td>
+                                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{'/books/edit?id=' + ${book.id}}" th:text="#{book.edit}"></a></td>
+                                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{'/books/show?id=' + ${book.id}}" th:text="#{book.show}"></a></td>
+                                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{'/books/hide?id=' + ${book.id}}" th:text="#{book.hide}"></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="custom-pagination">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="footer-copyright-area">

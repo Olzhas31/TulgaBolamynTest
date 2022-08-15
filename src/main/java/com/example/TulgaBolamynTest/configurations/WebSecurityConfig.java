@@ -31,8 +31,6 @@ public class WebSecurityConfig {
                     .antMatchers("/users/enable").hasAuthority("ADMIN")
                     .antMatchers("/users/block").hasAuthority("ADMIN")
                     .antMatchers("/users/unblock").hasAuthority("ADMIN")
-                    .antMatchers("/books/**").hasAuthority("ADMIN")
-                    .antMatchers("/questions/**").hasAnyAuthority("ADMIN", "MODERATOR")
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

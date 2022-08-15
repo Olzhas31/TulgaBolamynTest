@@ -1,8 +1,10 @@
 package com.example.TulgaBolamynTest.controllers;
 
 import com.example.TulgaBolamynTest.domains.Book;
+import com.example.TulgaBolamynTest.domains.User;
 import com.example.TulgaBolamynTest.services.BookService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +17,18 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public String showBooksListPage(Model model){
+    public String showBooksListPage(Model model, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUDetails().getSurname() + " " + user.getUDetails().getName());
         model.addAttribute("books", bookService.getAll());
         return "book/books";
     }
 
     @GetMapping("/create")
-    public String showCreateNewBookPage(@ModelAttribute("book") Book book){
+    public String showCreateNewBookPage(Model model, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUDetails().getSurname() + " " + user.getUDetails().getName());
+        model.addAttribute("book", new Book());
         return "book/newBook";
     }
 
@@ -32,7 +39,9 @@ public class BookController {
     }
 
     @GetMapping("/edit")
-    public String showEditBookPage(@RequestParam("id") Long id, Model model){
+    public String showEditBookPage(@RequestParam("id") Long id, Model model, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUDetails().getSurname() + " " + user.getUDetails().getName());
         model.addAttribute("book", bookService.getById(id));
         return "book/editBook";
     }
