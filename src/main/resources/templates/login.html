@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="back-link back-backend">
-                    <a href="/" class="btn btn-primary">Back to Dashboard</a>
+                    <a th:href="@{/}" class="btn btn-primary" th:text="#{backToMain}"></a>
                 </div>
             </div>
         </div>
@@ -77,28 +77,24 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
             <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="text-center m-b-md custom-login">
-                    <h3>PLEASE LOGIN TO APP</h3>
-                    <p>This is the best app ever!</p>
+                    <h3 th:text="#{login.welcome}"></h3>
+                    <p th:text="#{login.head}"></p>
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
                         <form th:method="POST" th:action="@{/login}" id="loginForm">
                             <div class="form-group">
-                                <label class="control-label" for="username">Username</label>
-                                <input type="text" name="username" placeholder="Login" title="Please enter your login" id="username" required="" value="" class="form-control">
+                                <label class="control-label" for="username" th:text="#{login.login}"></label>
+                                <input type="text" name="username" th:placeholder="#{login.login}" title="Please enter your login" id="username" required="" value="" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="password">Password</label>
+                                <label class="control-label" for="password" th:text="#{password}"></label>
                                 <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
                             </div>
-                            <div class="checkbox login-checkbox">
-                                <label>
-										<input type="checkbox" class="i-checks"> Remember me </label>
-                                <p class="help-block small">(if this is a private computer)</p>
-                            </div>
-                            <button class="btn btn-success btn-block loginbtn">Login</button>
-                            <a class="btn btn-default btn-block" th:href="@{/registration}">Register</a>
+                            <button class="btn btn-success btn-block loginbtn" th:text="#{login}"></button>
+                            <a class="btn btn-default btn-block" th:href="@{/registration}" th:text="#{registration}"></a>
                         </form>
+                        <a class="btn btn-default btn-block" th:href="@{/password-recovery}" th:text="#{login.password-recovery}"></a>
                     </div>
                 </div>
             </div>
@@ -106,7 +102,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                <p>Copyright &copy; 2018 <a href="https://colorlib.com/wp/templates/">Colorlib</a> All rights reserved.</p>
+                <p th:text="#{copyright}"></p>
             </div>
         </div>
     </div>

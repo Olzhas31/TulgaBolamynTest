@@ -11,8 +11,7 @@ import javax.validation.constraints.NotEmpty;
 //@PasswordMatches
 public class RegistrationRequest {
 
-//    @NotNull
-//    @NotEmpty
+    @NotEmpty
     private String login;
 
 //    @NotNull

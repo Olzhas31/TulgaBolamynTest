@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Register | jeweler - Material Admin Template</title>
+    <title th:text="#{title}"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="back-link back-backend">
-                    <a href="/" class="btn btn-primary">Back to Dashboard</a>
+                    <a th:href="@{/}" class="btn btn-primary" th:text="#{backToMain}"></a>
                 </div>
             </div>
         </div>
@@ -77,45 +77,44 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
             <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="text-center custom-login">
-                    <h3>Registration</h3>
-                    <p>Admin template with very clean and aesthetic style prepared for your next app. </p>
+                    <h3 th:text="#{registration}"></h3>
+                    <p th:text="#{reg.t1}"></p>
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
                         <form th:method="POST" th:action="@{/registration}" th:object="${user}" id="loginForm">
                             <div class="row">
                                 <div class="form-group col-lg-12">
-                                    <label>Login</label>
-                                    <input th:field="*{login}" id="login" class="form-control">
+                                    <label th:text="#{login.login}"></label>
+                                    <input th:field="*{login}" id="login" class="form-control" required>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Name</label>
-                                    <input th:field="*{name}" id="name" class="form-control">
+                                    <label th:text="#{reg.name}"></label>
+                                    <input th:field="*{name}" id="name" class="form-control" required>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Surname</label>
-                                    <input th:field="*{surname}" id="surname" class="form-control">
+                                    <label th:text="#{reg.surname}"></label>
+                                    <input th:field="*{surname}" id="surname" class="form-control" required>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Email Address</label>
-                                    <input th:field="*{email}" id="email" class="form-control">
+                                    <label th:text="#{email}"></label>
+                                    <input th:field="*{email}" id="email" class="form-control" required>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Phone number</label>
+                                    <label th:text="#{reg.phoneNumber}"></label>
                                     <input th:field="*{phoneNumber}" id="phoneNumber" class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Password</label>
-                                    <input th:field="*{password}" id="password" type="password" class="form-control">
+                                    <label th:text="#{password}"></label>
+                                    <input th:field="*{password}" id="password" type="password" class="form-control" required>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Repeat Password</label>
-                                    <input type="password" class="form-control">
+                                    <label th:text="#{reg.repeatPassword}"></label>
+                                    <input type="password" class="form-control" required>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-success loginbtn">Register</button>
-                                <button class="btn btn-default">Cancel</button>
+                                <button class="btn btn-success loginbtn" th:text="#{registration}"></button>
                             </div>
                         </form>
                     </div>
@@ -125,7 +124,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <p>Copyright &copy; 2018 <a href="https://colorlib.com/wp/templates/">Colorlib</a> All rights reserved.</p>
+                <p th:text="#{copyright}"></p>
             </div>
         </div>
     </div>
