@@ -216,36 +216,60 @@
             </div>
         </div>
 
-        <div sec:authorize="hasAuthority('ADMIN')">
-            <a th:href="@{'/questions/create?bookId=' + ${bookId}}" th:text="#{question.create}"></a>
-        </div>
-        <div>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th th:text="#{question.id}"></th>
-                    <th th:text="#{question.question}"></th>
-                    <th th:text="#{question.option0}"></th>
-                    <th th:text="#{question.option1}"></th>
-                    <th th:text="#{question.option2}"></th>
-                    <th th:text="#{question.option3}"></th>
-                    <th th:text="#{question.edit}"></th>
-                    <th th:text="#{question.delete}"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="question: ${questions}">
-                    <td th:text="${question.id}"></td>
-                    <td th:text="${question.quest}"></td>
-                    <td th:text="${question.option0}"></td>
-                    <td th:text="${question.option1}"></td>
-                    <td th:text="${question.option2}"></td>
-                    <td th:text="${question.option3}"></td>
-                    <td><a th:href="@{'/questions/edit?id=' + ${question.id}}" th:text="#{question.edit}"></a></td>
-                    <td><a th:href="@{'/questions/delete?id=' + ${question.id}}" th:text="#{question.delete}"></a></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="product-status mg-tb-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-status-wrap">
+                            <h4 th:text="#{question.list}"></h4>
+                            <div sec:authorize="hasAnyAuthority('ADMIN', 'MODERATOR')" class="add-product">
+                                <a th:href="@{'/questions/create?bookId=' + ${bookId}}" th:text="#{question.create}"></a>
+                            </div>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th th:text="#{question.id}"></th>
+                                    <th th:text="#{question.question}"></th>
+                                    <th th:text="#{question.option0}"></th>
+                                    <th th:text="#{question.option1}"></th>
+                                    <th th:text="#{question.option2}"></th>
+                                    <th th:text="#{question.option3}"></th>
+                                    <th th:text="#{question.edit}" sec:authorize="hasAnyAuthority('ADMIN', 'MODERATOR')"></th>
+                                    <th th:text="#{question.delete}" sec:authorize="hasAnyAuthority('ADMIN', 'MODERATOR')"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="question: ${questions}">
+                                    <td th:text="${question.id}"></td>
+                                    <td th:text="${question.quest}"></td>
+                                    <td th:text="${question.option0}"></td>
+                                    <td th:text="${question.option1}"></td>
+                                    <td th:text="${question.option2}"></td>
+                                    <td th:text="${question.option3}"></td>
+                                    <td sec:authorize="hasAnyAuthority('ADMIN', 'MODERATOR')">
+                                        <a th:href="@{'/questions/edit?id=' + ${question.id}}" th:text="#{question.edit}"></a>
+                                    </td>
+                                    <td sec:authorize="hasAnyAuthority('ADMIN', 'MODERATOR')">
+                                        <a th:href="@{'/questions/delete?id=' + ${question.id}}" th:text="#{question.delete}"></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="custom-pagination">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="footer-copyright-area">

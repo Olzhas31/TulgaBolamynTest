@@ -82,6 +82,8 @@
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
+                        <span th:if="${param.error}" th:text="#{login.error}"></span>
+                        <span th:if="${param.logout}" th:text="#{login.logout}"></span>
                         <form th:method="POST" th:action="@{/login}" id="loginForm">
                             <div class="form-group">
                                 <label class="control-label" for="username" th:text="#{login.login}"></label>
